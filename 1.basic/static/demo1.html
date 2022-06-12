@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            color: brown;
+            font-size: 28px;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        有一个人来买瓜!
+    </div>
+</body>
+<script>
+    const wrapperDiv = document.querySelector('.wrapper');
+    let isBaoShu = false;
+    wrapperDiv.addEventListener('click', function() {
+        wrapperDiv.innerHTML= isBaoShu ? '有一个人来买瓜' : '萨日朗!萨日朗!';
+        isBaoShu = !isBaoShu
+    })
+</script>
+</html>
