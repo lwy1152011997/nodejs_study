@@ -16,4 +16,52 @@
         console.log(`文件读取失败:${err}`);
         return;
     }
+
+    resolveCss(dataStr);
+    resolveJs(dataStr);
+    resolveHtml(dataStr);
  })
+
+ // 处理css
+ function resolveCss(cssString) {
+    const cssStr = styleReg.exec(cssString); // 得到一个['style标签内的css样式字符串']
+    const _css = cssStr[0].replace('<style>', '').replace('</style>', '');
+    
+    fs.writeFile(path.join(__dirname, '../project-demo/index.css'), _css, function(err) {
+        if (err) {
+            console.log(`文件写入失败:${err}`);
+            return;
+        }
+        console.log(`文件写入成功`);
+    })
+ }
+
+ // 处理js
+ function resolveJs(jsString) {
+    const jsStr = jsReg.exec(jsString);
+    const _js = jsStr[0].replace('<script>', '').replace('</script>', '');
+
+    fs.writeFile(path.join(__dirname, '../project-demo/index.js'), _js, function(err) {
+        if (err) {
+            console.log(`文件写入失败:${err}`);
+            return;
+        }
+        console.log(`文件写入成功`);
+    })
+ }
+
+ // 处理html
+ function resolveHtml(htmlString) {
+    // 标签替换
+    const htmlStr = htmlString
+                        .replace(styleReg, `<link rel="stylesheet" href="./index.css" />`)
+                        .replace(jsReg, `<script src="./index.js"></script>`);
+
+    fs.writeFile(path.join(__dirname, '../project-demo/index.html'), htmlStr, function(err) {
+        if (err) {
+            console.log(`文件写入失败:${err}`);
+            return;
+        }
+        console.log(`文件写入成功`);
+    })
+ }
