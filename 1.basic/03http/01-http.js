@@ -17,7 +17,7 @@ server.on('request', function(request, response) {
      *           比如: 设置响应头, 响应内容等等...
      */
     // console.log(request);
-    response.end('request')
+    response.end('request') // 向客户端响应内容
     }
 )
 // 2.启动服务器
